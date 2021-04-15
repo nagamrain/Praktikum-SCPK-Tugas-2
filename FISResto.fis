@@ -1,0 +1,64 @@
+[System]
+Name='FISResto'
+Type='mamdani'
+Version=2.0
+NumInputs=3
+NumOutputs=3
+NumRules=6
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Kondisi_Restaurant'
+Range=[0 10]
+NumMFs=2
+MF1='Bising':'trapmf',[-3.6 -0.4 0.4 3.6]
+MF2='Nyaman':'trapmf',[6.4 9.6 10.4 13.6]
+
+[Input2]
+Name='Makanan'
+Range=[0 10]
+NumMFs=2
+MF1='Tidak_Enak':'trimf',[-4 0 4]
+MF2='Enak':'trimf',[6 10 14]
+
+[Input3]
+Name='Pelayanan'
+Range=[0 50]
+NumMFs=3
+MF1='Mengecewakan':'gaussmf',[8.495 3.469e-16]
+MF2='Biasa':'gaussmf',[8.495 25]
+MF3='Memuaskan':'gaussmf',[8.495 50]
+
+[Output1]
+Name='Kepuasan_Pelanggan'
+Range=[0 10]
+NumMFs=2
+MF1='Tidak_Puas':'trimf',[-4 0 4]
+MF2='Puas':'trimf',[6 10 14]
+
+[Output2]
+Name='Review'
+Range=[0 10]
+NumMFs=2
+MF1='Jelek':'trapmf',[-3.6 -0.4 0.4 3.6]
+MF2='Bagus':'trapmf',[6.426 9.626 10.43 13.63]
+
+[Output3]
+Name='Tip'
+Range=[0 30]
+NumMFs=3
+MF1='Sedikit':'gaussmf',[5.097 0.07938]
+MF2='Sedang':'gaussmf',[5.097 15]
+MF3='Banyak':'gaussmf',[5.097 30]
+
+[Rules]
+1 1 1, 1 1 0 (1) : 1
+1 2 2, 1 1 0 (1) : 1
+1 2 3, 2 2 1 (1) : 1
+2 2 2, 2 2 1 (1) : 1
+2 2 3, 2 2 3 (1) : 1
+2 2 2, 2 2 2 (1) : 1
